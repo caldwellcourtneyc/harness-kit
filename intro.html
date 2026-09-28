@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harness Kit</title>
+<meta name="description" content="Build your own Claude Code harness: a kit your own Claude runs with you to build the setup around Claude Code: instructions, memory, a searchable journal, a close-out routine, skills, guards and a learning loop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@700;800;900&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* One deliberate light theme (indigo, orange, cool grey), set explicitly so the page reads the same on any host. */
+:root{
+  color-scheme:light;
+  --pri:#21178C; --acc:#DF5702; --acc-text:#B24602; --acc-soft:#EFAB81; --acc-fill:#C94E02; --on-acc:#FFFFFF;
+  --ground:#E9EBEF; --surface:#FFFFFF; --surface2:#F4F5F8; --lane:#DDDFE4; --line:#C9CCD4;
+  --ink:#1B1C24; --mute:#4F5160;
+  --font-d:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-b:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fs-body:16px; --fs-lead:17.5px; --fs-card:15px; --fs-meta:13px;
+  --padx:clamp(16px,4vw,56px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ground);color:var(--ink);font-family:var(--font-b);font-size:var(--fs-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px;border-radius:4px}
+[tabindex="-1"]:focus{outline:none}
+.d{font-family:var(--font-d);font-weight:900;letter-spacing:-.025em;line-height:1.02;text-wrap:balance}
+.lbl{font-family:var(--font-d);font-weight:800;font-size:var(--fs-meta);letter-spacing:.08em;text-transform:uppercase}
+.wrap{padding-inline:var(--padx)}
+
+/* hero: headline left, argument and actions right */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end;padding-block:clamp(36px,5vw,64px) clamp(28px,4vw,44px)}
+.kick{color:var(--acc-text);margin-bottom:14px}
+.hero h1{font-size:clamp(2.4rem,5vw,4.4rem);color:var(--pri)}
+.lede{font-size:var(--fs-lead)}
+.lede b{color:var(--pri)}
+.lede + .lede{margin-top:12px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--pri);color:#fff;border:0;padding:14px 20px;border-radius:6px;text-decoration:none;font-family:var(--font-d);font-weight:800;font-size:var(--fs-card)}
+.btn.hot{background:var(--acc-fill);color:var(--on-acc)}
+.btn.alt{background:transparent;color:var(--pri);box-shadow:inset 0 0 0 2px var(--pri)}
+.btn:hover{filter:brightness(1.12)}
+.btn.alt:hover{background:var(--surface)}
+
+/* the band: the route as the page's signature */
+.bandroute{background:var(--pri);color:#fff;padding-block:clamp(28px,4vw,44px) clamp(24px,3vw,36px);margin-bottom:clamp(32px,4vw,48px)}
+.bhead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.bhead h2{font-size:clamp(1.5rem,2.6vw,2.1rem)}
+.bhead p{font-size:var(--fs-card);color:#D5D3EC}
+.bline{position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}
+.btrack{position:absolute;top:44px;height:8px;border-radius:4px;background:rgba(255,255,255,.22);left:6%;right:6%}
+.bst{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;background:none;border:0;padding:0 4px 6px;border-radius:12px;text-align:center}
+.bst .txt{display:flex;flex-direction:column;gap:4px}
+.bst .dot{width:92px;height:92px;border-radius:50%;background:var(--pri);border:8px solid rgba(255,255,255,.34);display:grid;place-items:center;font-family:var(--font-d);font-weight:900;font-size:32px;color:#fff;transition:transform .2s,background .2s,border-color .2s}
+.bst.dest .dot{border-radius:22px;background:var(--acc-fill);border-color:var(--acc-fill);color:var(--on-acc)}
+.bst .dot svg{width:38px;height:38px}
+.bst .pain{font-family:var(--font-d);font-weight:800;font-size:var(--fs-body);line-height:1.25}
+.bst .nm{font-family:var(--font-d);font-weight:800;font-size:var(--fs-meta);letter-spacing:.08em;text-transform:uppercase;color:var(--acc-soft)}
+.rail{position:relative;margin-top:20px;height:58px;border-top:2px solid rgba(255,255,255,.18)}
+.rail .mark{position:absolute;top:-2px;height:4px;background:var(--acc);border-radius:2px;opacity:0;transition:left .35s cubic-bezier(.3,.8,.2,1),width .35s,opacity .2s}
+.rail .txt{position:absolute;top:14px;white-space:nowrap;font-family:var(--font-d);font-weight:800;font-size:var(--fs-lead);transition:left .35s cubic-bezier(.3,.8,.2,1)}
+.rail .txt small{font-family:var(--font-b);font-weight:600;font-size:var(--fs-card);color:var(--acc-soft);margin-left:10px}
+.rail .txt.hint{font-family:var(--font-b);font-weight:600;font-size:var(--fs-card);color:#D5D3EC}
+.rail.show .mark{opacity:1}
+.bst .fix{display:none;font-family:var(--font-d);font-weight:800;font-size:var(--fs-body);line-height:1.25;color:var(--acc-soft)}
+.bst:hover .dot,.bst:focus-visible .dot{transform:translateY(-4px);border-color:var(--acc);background:#48238A}
+.bst.dest:hover .dot{background:var(--acc-fill)}
+.preview{margin-top:22px;background:rgba(255,255,255,.09);border-radius:14px;padding:18px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;min-height:96px}
+.preview .pt{font-family:var(--font-d);font-weight:800;font-size:var(--fs-lead);margin-bottom:4px}
+.preview p{font-size:var(--fs-card)}
+.preview .go{background:var(--acc);color:var(--on-acc);border:0;border-radius:6px;padding:12px 16px;font-family:var(--font-d);font-weight:800;font-size:var(--fs-card);white-space:nowrap}
+
+/* sticky compact route, shown once the band scrolls away; fixed, so hidden it takes no room */
+.minibar{position:fixed;top:0;left:0;right:0;z-index:40;padding-top:env(safe-area-inset-top,0px);background:rgba(233,235,239,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transform:translateY(-100%);opacity:0;pointer-events:none;transition:transform .3s,opacity .3s}
+.minibar.show{transform:none;opacity:1;pointer-events:auto}
+.minibar .inner{display:flex;align-items:center;gap:16px;padding-block:8px}
+.minibar .lbl{color:var(--mute);white-space:nowrap}
+.line{position:relative;display:grid;grid-template-columns:repeat(8,1fr);flex:1}
+.track,.fill{position:absolute;top:13px;height:4px;border-radius:3px}
+.track{background:var(--line)}
+.fill{background:var(--acc);width:0;transition:width .7s cubic-bezier(.3,.8,.2,1)}
+.stop{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0 2px 2px;border-radius:8px}
+.stop .dot{width:30px;height:30px;border-radius:50%;background:var(--surface);border:4px solid var(--line);display:grid;place-items:center;font-family:var(--font-d);font-weight:800;font-size:12px;color:var(--mute);transition:border-color .25s,transform .2s,background .25s,color .25s}
+.stop.dest .dot{border-radius:8px;background:var(--pri);border-color:var(--pri);color:#fff}
+.stop .name{font-family:var(--font-d);font-weight:700;font-size:11px;line-height:1.2;text-align:center}
+.stop:hover .dot{transform:translateY(-2px);border-color:var(--pri);color:var(--pri)}
+.stop.dest:hover .dot{color:#fff}
+.stop.done .dot{border-color:var(--acc);color:var(--acc-text)}
+.stop.here .dot{background:var(--pri);border-color:var(--pri);color:#fff;transform:scale(1.12)}
+.stop.dest.here .dot{background:var(--acc-fill);border-color:var(--acc-fill);color:var(--on-acc)}
+
+/* stops */
+.step{scroll-margin-top:84px;background:var(--surface);border-radius:14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden;margin-bottom:22px}
+.step-l,.step-r{padding:clamp(22px,3vw,36px)}
+.step-l{display:flex;flex-direction:column}
+.step-r{background:var(--surface2)}
+.where{color:var(--acc-text)}
+.step h2{font-size:clamp(1.6rem,2.8vw,2.2rem);color:var(--pri);margin:8px 0 18px}
+.row{margin-bottom:14px}
+.row .lbl{display:block;margin-bottom:3px}
+.row.hurt .lbl{color:var(--acc-text)}
+.row.add .lbl{color:var(--pri)}
+.builtin{font-size:var(--fs-card);color:var(--mute);border-top:1px solid var(--line);padding-top:12px;margin-top:2px}
+.builtin b{color:var(--ink)}
+.check{margin-top:auto;padding-top:18px}
+.check div{background:var(--surface);border-radius:10px;padding:13px 15px;font-size:var(--fs-card);box-shadow:inset 0 0 0 2px #EFAB81}
+.check b{color:var(--acc-text)}
+.ask{font-weight:600;margin-bottom:10px;font-size:var(--fs-card)}
+.ask .lbl{display:block;color:var(--mute);margin-bottom:6px}
+.lane{border-radius:10px;padding:13px 15px;margin-bottom:10px;font-size:var(--fs-card)}
+.lane .lbl{display:block;margin-bottom:4px;font-size:11.5px}
+.lane.before{background:var(--lane)}
+.lane.before .lbl{color:var(--mute)}
+.lane.after{background:var(--pri);color:#fff}
+.lane.after .lbl{color:var(--acc-soft)}
+.because{display:flex;gap:8px;align-items:flex-start;font-size:var(--fs-card);margin:2px 0 14px}
+.because b{color:var(--acc-text);white-space:nowrap}
+.closer{margin-top:auto;padding-top:22px}
+.change{font-family:var(--font-d);font-weight:800;color:var(--pri);font-size:var(--fs-lead);line-height:1.3}
+.guarantee{margin-top:10px;font-family:var(--font-d);font-weight:800;color:var(--acc-text);font-size:var(--fs-lead)}
+.next{margin-top:16px;display:flex;justify-content:flex-end}
+.next button{background:none;border:0;font-family:var(--font-d);font-weight:800;font-size:var(--fs-card);color:var(--pri);display:inline-flex;gap:8px;align-items:center;padding:6px 2px;border-bottom:2px solid var(--acc)}
+.next button:hover{color:var(--acc-text)}
+
+/* habits, shelf, get */
+.band{margin-block:clamp(32px,4vw,52px);scroll-margin-top:84px}
+.band-head{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(16px,3vw,40px);align-items:end;margin-bottom:22px}
+.band-head h2{font-size:clamp(1.7rem,3vw,2.4rem);color:var(--pri)}
+.band-head p{font-size:var(--fs-lead)}
+.habits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.habit{background:var(--surface);border-radius:12px;padding:20px}
+.habit h3{font-family:var(--font-d);font-weight:800;font-size:var(--fs-lead);color:var(--pri);margin-bottom:6px;line-height:1.2}
+.habit p{font-size:var(--fs-card)}
+.bandfoot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:var(--fs-card);color:var(--mute)}
+.bandfoot .next{margin-top:0}
+.habitband{background:var(--acc-fill);color:var(--on-acc);padding-block:clamp(32px,4vw,52px);margin-block:clamp(32px,4vw,52px);scroll-margin-top:60px}
+.habitband .band-head h2{color:var(--on-acc)}
+.habitband .habit{background:var(--surface);color:var(--ink)}
+.habitfoot{margin-top:16px;font-size:var(--fs-card);font-weight:600}
+.shelf{background:var(--surface);border-radius:14px;overflow:hidden}
+.cluster{display:grid;grid-template-columns:minmax(150px,.22fr) minmax(0,1fr);gap:20px;padding:20px 22px;border-top:1px solid var(--line)}
+.cluster:first-child{border-top:0}
+.cluster h3{font-family:var(--font-d);font-weight:800;font-size:var(--fs-lead);color:var(--acc-text);line-height:1.2}
+.items{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:22px}
+.item .when{font-weight:600;font-size:var(--fs-card);margin-bottom:4px}
+.item .tool{font-size:var(--fs-meta);color:var(--mute)}
+.item .tool code{font-family:var(--font-d);font-weight:800;color:var(--pri);font-size:var(--fs-card)}
+.shelf-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:18px;align-items:center;padding:14px 22px;border-top:1px solid var(--line)}
+.shelf-row:first-child{border-top:0}
+.shelf-row .when{font-weight:600;text-align:right}
+.shelf-row .arrow{color:var(--acc-text);font-weight:800}
+.shelf-row .tool code{font-family:var(--font-d);font-weight:800;color:var(--pri);font-size:var(--fs-body)}
+.shelf-row .tool span{display:block;font-size:var(--fs-meta);color:var(--mute)}
+.shelf-note{padding:16px 22px;background:var(--surface2);font-size:var(--fs-card)}
+.get{background:var(--pri);color:#fff;border-radius:16px;padding:clamp(26px,4vw,44px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px)}
+.get h2{font-size:clamp(1.8rem,3.2vw,2.6rem);margin-bottom:14px}
+.get .btn{background:var(--acc-fill);color:var(--on-acc);margin-top:18px;font-size:var(--fs-body)}
+.get .btn[aria-disabled=true]{opacity:.6;cursor:default}
+.get ol{list-style:none;counter-reset:s;display:grid;gap:12px}
+.get li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;font-size:var(--fs-card)}
+.get li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-weight:800;font-family:var(--font-d)}
+.get code{background:rgba(255,255,255,.16);padding:1px 6px;border-radius:4px;font-size:.95em;overflow-wrap:anywhere}
+.get .small{font-size:var(--fs-meta);color:#D5D3EC;margin-top:14px;min-height:1.6em}
+.costs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.costs div{background:var(--surface);border-radius:12px;padding:18px;font-size:var(--fs-card)}
+.costs b{display:block;font-family:var(--font-d);color:var(--pri);margin-bottom:4px}
+footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
+
+@media(max-width:1100px){
+  .bline{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:22px}
+  .btrack{display:none}
+}
+@media(max-width:860px){
+  .hero,.step,.get,.band-head{grid-template-columns:minmax(0,1fr)}
+  .hero{align-items:start}
+  .habits{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .costs{grid-template-columns:minmax(0,1fr)}
+  .cluster{grid-template-columns:minmax(0,1fr);gap:10px}
+  .items{grid-auto-flow:row;grid-auto-columns:auto;gap:14px}
+  .minibar .lbl,.stop .name{display:none}
+  .bline{grid-template-columns:minmax(0,1fr);row-gap:8px}
+  .bst{flex-direction:row;text-align:left;gap:14px;padding:4px}
+  .bst .dot{width:52px;height:52px;border-width:5px;font-size:20px;flex:none}
+  .bst .dot svg{width:24px;height:24px}
+  .bst:hover .dot,.bst:focus-visible .dot{transform:none}
+  .bst .fix{display:block;font-size:var(--fs-card);font-weight:700}
+  .rail{display:none}
+}
+@media(max-width:480px){.habits{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+</head>
+<body>
+
+<div class="minibar" id="minibar" aria-hidden="true" inert>
+  <div class="inner wrap">
+    <span class="lbl">The fixes</span>
+    <div class="line" id="miniLine"></div>
+  </div>
+</div>
+
+<header class="wrap hero">
+  <div>
+    <div class="lbl kick">Build your own Claude Code harness</div>
+    <h1 class="d">Claude Code starts as a brilliant stranger.</h1>
+  </div>
+  <div>
+    <p class="lede">It knows a lot, but starts off knowing next to nothing about you. It can't look up what you decided last month, today's correction may not make it to tomorrow, and it waits for you to start everything. <b>A harness is what you put around it</b>, so it works like a colleague who's been with you for months.</p>
+    <div class="ctas">
+      <a class="btn hot" href="#get" data-goto="get">Get the kit</a>
+      <button class="btn alt" data-go="0">See how it works</button>
+    </div>
+  </div>
+</header>
+
+<nav class="bandroute" id="bandRoute" aria-labelledby="bandh">
+  <div class="wrap">
+    <div class="bhead"><h2 class="d" id="bandh">Typical frustrations and the fix for each</h2><p>In the order you'd add them.</p></div>
+    <div class="bline" id="bline"><div class="btrack"></div></div>
+    <div class="rail" id="rail" aria-hidden="true"><div class="mark"></div><div class="txt"></div></div>
+  </div>
+</nav>
+
+<main class="wrap" id="steps"></main>
+
+<section class="habitband" id="habits" aria-labelledby="habh">
+  <div class="wrap">
+    <div class="band-head">
+      <h2 class="d" id="habh" tabindex="-1">The half no file can install</h2>
+      <p>A harness is half files, half habits. These four are what make the files keep paying off.</p>
+    </div>
+    <div class="habits">
+      <div class="habit"><h3>Close every session</h3><p>Memory and the journal only fill up if each session writes to them.</p></div>
+      <div class="habit"><h3>Say why it missed</h3><p>That's the raw material the learning loop turns into permanent fixes.</p></div>
+      <div class="habit"><h3>Check what it saves</h3><p>Read the memories and rules Claude proposes, so your harness describes you, not Claude's guesses about you.</p></div>
+      <div class="habit"><h3>Prune at the check-in</h3><p>Everything always loaded costs something every session, so remove what hasn't earned its place.</p></div>
+    </div>
+    <p class="habitfoot">The kit's guide goes deeper on each, including what it costs.</p>
+  </div>
+</section>
+
+<section class="wrap band" id="shelf" aria-labelledby="shelfh">
+  <div class="band-head">
+    <h2 class="d" id="shelfh" tabindex="-1">When this happens, reach for this</h2>
+    <p>Some tools earn their place later. Setup writes each one into your instructions with the moment it's for, so Claude can suggest it then.</p>
+  </div>
+  <div class="shelf">
+    <div class="cluster"><h3>Deciding and planning</h3><div class="items"><div class="item"><p class="when">You're facing a decision with real tradeoffs</p><p class="tool"><code>/decide</code> a decision partner that lays out the real tradeoffs</p></div><div class="item"><p class="when">You're starting a new project</p><p class="tool"><code>a new-project checklist</code> what a project needs on day one</p></div><div class="item"><p class="when">You're about to build something with real scope</p><p class="tool"><code>/prd</code> questions the idea before any code gets written</p></div><div class="item"><p class="when">You're building the first thing real people will click through</p><p class="tool"><code>/ux-thinking</code> checks it will make sense before it's built</p></div></div></div>
+    <div class="cluster"><h3>Before it goes out</h3><div class="items"><div class="item"><p class="when">You're correcting the look of the same thing twice in a row</p><p class="tool"><code>/options</code> puts real variants side by side to react to</p></div><div class="item"><p class="when">You're about to show work to other people</p><p class="tool"><code>/squint</code> a cold read, the way your audience will meet it</p></div><div class="item"><p class="when">You're working on a codebase that really matters</p><p class="tool"><code>/codehealth</code> reviews for the mistakes AI-written code tends to make</p></div><div class="item"><p class="when">You're about to push code or deploy for the first time</p><p class="tool"><code>a push gate</code> nothing goes out without your yes, every time</p></div></div></div>
+    <div class="cluster"><h3>As your setup grows</h3><div class="items"><div class="item"><p class="when">You're running two sessions at the same time</p><p class="tool"><code>an append-only guard</code> one session can't overwrite what the other wrote</p></div><div class="item"><p class="when">Two weeks in, at your setup check-in</p><p class="tool"><code>a session-start check</code> says where you left off, and proves your guards still work</p></div></div></div>
+  </div>
+</section>
+
+<section class="wrap band" id="get" aria-labelledby="geth">
+  <div class="get">
+    <div>
+      <h2 class="d" id="geth" tabindex="-1">Get the kit</h2>
+      <p>A set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup over a few short conversations, and never overwrites anything you already have without showing you first. It writes to Claude Code's settings folder in your home directory (~/.claude), so what it builds works in every project, and you can start it from any folder.</p>
+      <a class="btn" id="dl" href="https://github.com/caldwellcourtneyc/harness-kit/archive/refs/heads/main.zip">Download the kit (zip)</a>
+      <p class="small" id="dlnote">This harness can also work with Codex. The kit includes an adapter for it.</p>
+    </div>
+    <ol>
+      <li><span>Unzip it somewhere you'll keep it. It unzips as a folder called harness-kit-main.</span></li>
+      <li><span>Open Claude Code and say: <code>Read START-HERE.md and SEED.md in &lt;the path to harness-kit-main&gt;, then let's begin.</code></span></li>
+      <li><span>Expect a conversation, not an installer. It starts by looking at what you already have and asking how you work, then builds these pieces roughly in the order above. Stop after any conversation and pick it up next time.</span></li>
+      <li><span>Read each file before you add it. That includes this kit; your Claude shows you each one first.</span></li>
+    </ol>
+  </div>
+  <div class="costs">
+    <div><b>What it costs</b>A few sessions to set up, spread out however you like.</div>
+    <div><b>What it asks of you</b>Pruning. Every always-on piece is read every session, so the kit sets a two-week check-in to remove what hasn't earned its place.</div>
+    <div><b>How you'll know it worked</b>A fresh session surprises you with something from three sessions ago that you didn't re-tell it.</div>
+  </div>
+</section>
+
+<footer class="wrap">From Courtney, and her Claude. Kit snapshot 2026-09-27. Facts about Claude Code were checked against its docs in September 2026; the example exchanges are illustrations, not transcripts.</footer>
+
+<script>
+const STEPS=[
+ {id:'instructions',name:'Instructions',title:'Instructions it reads every session',
+  pain:"It doesn't know how I work.", fix:"A file it reads every session, in your words",
+  hurt:"Every session, you re-explain how you like to work: how much detail you want, what you already know, how you like to make decisions.",
+  add:"A CLAUDE.md file in your words: who you are, how you like to work, and pointers like \"when I pick a project back up, read its handoff first.\" (A handoff is a document written at the end of a session that captures where the work stands and what comes next.)",
+  builtin:"the CLAUDE.md file, read at the start of every session.",
+  ask:"Build me a landing page for the bakery.",
+  before:"Here's a complete landing page! I built a hero section, the menu, testimonials and a contact form...",
+  after:"Before I build all of it: here are three quick directions to react to, since you typically prefer to choose from real examples over reading descriptions.",
+  because:"one line in your instructions: show me examples, don't describe them.",
+  change:"Every session starts already knowing how you like to work."},
+ {id:'memory',name:'Memory',title:'Facts it can look up',
+  pain:"I told you this last week.", fix:"Facts you approve, visible to every project",
+  hurt:"Claude Code's auto memory only remembers within one project, and it saves on its own, including things it misunderstood or gave too much weight.",
+  add:"The facts that matter, one short note each, with the ones about you kept where every project can see them. Plus one rule: Claude shows you a memory before saving it, so you decide what it remembers.",
+  builtin:"auto memory, one project at a time, saving without asking.",
+  ask:"Draft the update for the client.",
+  before:"Sure! Here's a detailed, formal update covering all the key points...",
+  after:"Here's a three-line version, inline. You told me she reads on her phone and skips attachments.",
+  because:"a memory note, found through the index.",
+  change:"You stop repeating facts about yourself and your work."},
+ {id:'journal',name:'Journal',title:'A record it can search',
+  pain:"Didn't we already decide this?", fix:"A searchable record of past sessions",
+  hurt:"Why you decided something, what you tried that failed, and what worked all lived in chats that are gone. So you re-decide, re-try, and re-explain.",
+  add:"A journal: a short dated entry at the end of each session, a way for Claude to search it, and a standing instruction to check it whenever you refer back to earlier work: past decisions, what failed before, approaches that worked.",
+  builtin:"saved transcripts of past sessions, but no way to search them by what was said. This is the piece the harness adds.",
+  ask:"Should we move the site to a static generator?",
+  before:"Good idea! Static sites are fast and cheap to host. Here's how to migrate...",
+  after:"We looked at this on Aug 12 and stayed put, because the booking form needs a server. Has that changed?",
+  because:"the journal, plus an instruction to search it first.",
+  change:"Past decisions come back with their reasons, before you redo the work."},
+ {id:'skills',name:'Skills',title:'Methods on tap',
+  pain:"Doesn't follow a proven process.", fix:"Proven methods it follows every time",
+  hurt:"Claude wings it instead of following a proven process.",
+  add:"Skills. A skill is a written method for one kind of job: the steps, the checks, what good looks like, and the mistakes to avoid. Claude uses it when the task matches, or when you type its name.",
+  builtin:"the skill format, and a few general skills like code review.",
+  ask:"Look over my pitch deck before I send it.",
+  before:"Looks great! Maybe tighten the wording on slide 3.",
+  after:"Reading it cold, the way an investor will: by slide 2 I still can't tell who it's for. Three things would stop them, most serious first, plus the slide that's working best so you keep it.",
+  because:"a review skill: read it as the audience first, rank problems by how much they cost you, and name what's working.",
+  change:"Claude follows the proven process and uses the right tools, every time."},
+ {id:'closeout',name:'Close-out',title:'A routine at the end of every session',
+  pain:"Good stuff gets lost when the session ends.", fix:"A routine that saves what mattered",
+  hurt:"When a session ends, you lose what you decided and why, what you tried that didn't work, and what's next. And memory and the journal only work if something writes to them.",
+  add:"One skill, /land, that runs the close-out: says what it didn't get to say, files each thing worth keeping where it belongs, updates the handoff, and drafts a short journal entry for your OK.",
+  builtin:"saved transcripts, but nothing that pulls out what mattered.",
+  ask:"OK, that's it for today.",
+  before:"Great work today! Let me know if you need anything else.",
+  after:"Landing. Two decisions to file, one thing I didn't get to say, and a journal draft below. Nothing's saved until you OK it.",
+  because:"the close-out routine. It's how every session feeds the next one.",
+  change:"Nothing valuable disappears when the session ends."},
+ {id:'guardrails',name:'Guardrails',title:'Scripts that block the damaging move',
+  pain:"It just deleted my work.", fix:"Scripts that block risky commands",
+  hurt:"In the flow of a session, Claude can do the risky thing you'd never approve if you were watching: wipe your uncommitted work, overwrite the copy stored online, commit a password.",
+  add:"Guards: small scripts that run just before any command Claude sends to your computer, and can stop it outright. The kit ships four, each with a test that proves it blocks.",
+  builtin:"hooks, the mechanism that lets a script run on an event and block it.",
+  ask:"Commit everything and push.",
+  before:"Committed 23 files and pushed.",
+  after:"Blocked: .env holds your API keys. I committed the other 22. Want .env added to .gitignore?",
+  because:"a guard that blocks committing files with credentials in them. It checks every command, so it doesn't depend on Claude remembering.",
+  change:"Some mistakes become impossible, not just unlikely.",
+  guarantee:"Instructions can guide. Only a script can guarantee."},
+ {id:'loop',name:'Learning loop',title:'Corrections that stick',
+  pain:"Same correction, third time.", fix:"Repeated mistakes become permanent fixes",
+  hurt:"You make the same correction for the third time, because nothing turned the first two into a permanent fix.",
+  add:"At each session's close-out, Claude notes friction: things you corrected, work called done without proof. Once a week, a scheduled task in Claude Code (or a standing line that runs it in your first session of the week) reads the log for what repeats, and each repeat gets a permanent fix.",
+  builtin:"nothing that tracks repeated mistakes.",
+  ask:"You used the old logo again.",
+  before:"Sorry! I'll use the new one.",
+  after:"That's the third time. This week's review suggests adding the current logo's filename to your project instructions, so it stops.",
+  because:"the friction log and its weekly review.",
+  change:"The harness gets better over months instead of just bigger."}
+];
+const DL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"/></svg>';
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* stops */
+document.getElementById('steps').innerHTML=STEPS.map((s,i)=>`
+<section class="step" id="${s.id}" aria-labelledby="h-${s.id}">
+  <div class="step-l">
+    <div class="lbl where">${i+1} · ${esc(s.name)}</div>
+    <h2 class="d" id="h-${s.id}" tabindex="-1">${esc(s.title)}</h2>
+    <div class="row hurt"><span class="lbl">What goes wrong</span><p>${esc(s.hurt)}</p></div>
+    <div class="row add"><span class="lbl">What the harness adds</span><p>${esc(s.add)}</p></div>
+    <p class="builtin"><b>Already in Claude Code:</b> ${esc(s.builtin)}</p>
+    <div class="closer"><p class="change">${esc(s.change)}</p>${s.guarantee?`<p class="guarantee">${esc(s.guarantee)}</p>`:''}</div>
+  </div>
+  <div class="step-r">
+    <p class="ask"><span class="lbl">An example</span>You: "${esc(s.ask)}"</p>
+    <div class="lane before"><span class="lbl">No harness</span>${esc(s.before)}</div>
+    <div class="lane after"><span class="lbl">With harness</span>${esc(s.after)}</div>
+    <p class="because"><b>Because of:</b><span>${esc(s.because)}</span></p>
+  </div>
+</section>`).join('');
+
+/* the band: hovering or focusing an item swaps its caption to the fix; clicking jumps to it */
+const bl=document.getElementById('bline');
+bl.insertAdjacentHTML('beforeend',STEPS.map((s,i)=>`<button class="bst" data-go="${i}"><span class="dot">${i+1}</span><span class="txt"><span class="pain">"${esc(s.pain)}"</span><span class="fix">${esc(s.fix)}</span><span class="nm">${esc(s.name)}</span></span></button>`).join('')
+  +`<button class="bst dest" data-goto="get"><span class="dot">${DL_SVG}</span><span class="txt"><span class="pain">Everything, one download.</span><span class="fix">Download the kit</span><span class="nm">Get the kit</span></span></button>`);
+
+const rail=document.getElementById('rail'),mk=rail.querySelector('.mark'),rtx=rail.querySelector('.txt');
+const HINT="Point at one to see its fix; click to read more.";
+function railShow(b){
+  if(!b){rail.classList.remove('show');rtx.className='txt hint';rtx.textContent=HINT;rtx.style.left='0px';return}
+  const i=+(b.dataset.go??7),r=b.getBoundingClientRect(),rr=rail.getBoundingClientRect();
+  mk.style.left=(r.left-rr.left+8)+'px';mk.style.width=(r.width-16)+'px';
+  rtx.className='txt';rtx.innerHTML=esc(i===7?'Download the kit':STEPS[i].fix)+'<small>'+(i===7?'Go to the download →':'Read more →')+'</small>';
+  const w=rtx.offsetWidth,cx=r.left-rr.left+r.width/2;rtx.style.left=Math.max(0,Math.min(rr.width-w,cx-w/2))+'px';
+  rail.classList.add('show');
+}
+bl.addEventListener('mouseover',e=>{const b=e.target.closest('.bst');if(b)railShow(b)});
+bl.addEventListener('focusin',e=>{const b=e.target.closest('.bst');if(b)railShow(b)});
+bl.addEventListener('mouseleave',()=>railShow(null));
+bl.addEventListener('focusout',e=>{if(!bl.contains(e.relatedTarget))railShow(null)});
+railShow(null);
+
+/* the sticky route */
+const line=document.getElementById('miniLine');
+line.innerHTML='<div class="track"></div><div class="fill"></div>'+STEPS.map((s,i)=>`<button class="stop" data-go="${i}" aria-label="${i+1}. ${s.name}. Jump to it"><span class="dot">${i+1}</span><span class="name">${s.name}</span></button>`).join('')
+  +`<button class="stop dest" data-goto="get" aria-label="Get the kit. Jump to it"><span class="dot">${DL_SVG.replace('<svg','<svg width="16" height="16"')}</span><span class="name">Get the kit</span></button>`;
+let here=-1;
+function layoutLine(){
+  const stops=[...line.querySelectorAll('.stop')];const lr=line.getBoundingClientRect();if(!lr.width)return;
+  const c=b=>{const d=b.querySelector('.dot').getBoundingClientRect();return d.left+d.width/2-lr.left};
+  const x0=c(stops[0]),xn=c(stops[stops.length-1]);
+  const tr=line.querySelector('.track'),fl=line.querySelector('.fill');
+  tr.style.left=x0+'px';tr.style.width=(xn-x0)+'px';fl.style.left=x0+'px';
+  fl.style.width=(here<0?0:c(stops[here])-x0)+'px';
+}
+function setHere(i){
+  here=i;
+  line.querySelectorAll('.stop').forEach((b,j)=>{b.classList.toggle('done',i>=0&&j<i);b.classList.toggle('here',j===i);if(j===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});
+  layoutLine();
+}
+function jump(el,head){el.scrollIntoView({behavior:reduce()?'auto':'smooth'});if(head)setTimeout(()=>head.focus({preventScroll:true}),reduce()?0:450)}
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');if(g){const i=+g.dataset.go;jump(document.getElementById(STEPS[i].id),document.getElementById('h-'+STEPS[i].id));setHere(i);return}
+  const t=e.target.closest('[data-goto]');if(t){e.preventDefault();const sec=document.getElementById(t.dataset.goto);jump(sec,sec.querySelector('h2'))}
+});
+let queued=false;
+function spy(){queued=false;const y=innerHeight*.4;let i=-1;STEPS.forEach((s,j)=>{if(document.getElementById(s.id).getBoundingClientRect().top<y)i=j});
+  if(document.getElementById('get').getBoundingClientRect().top<y)i=7;if(i!==here)setHere(i)}
+addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(spy)}},{passive:true});
+const bar=document.getElementById('minibar');
+new IntersectionObserver(es=>es.forEach(en=>{const on=!en.isIntersecting&&en.boundingClientRect.top<0;bar.classList.toggle('show',on);bar.setAttribute('aria-hidden',String(!on));bar.inert=!on;if(on)layoutLine()})).observe(document.getElementById('bandRoute'));
+addEventListener('resize',layoutLine);
+setHere(-1);
+
+</script>
+
+</body>
+</html>

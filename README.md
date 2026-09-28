@@ -4,6 +4,8 @@
 
 Claude Code starts as a brilliant stranger. It knows a lot, but starts off knowing next to nothing about you. It can't look up what you decided last month, today's correction may not make it to tomorrow, and it waits for you to start everything. **A harness is what you put around it**, so it works like a colleague who's been with you for months.
 
+For a visual walkthrough, open `intro.html` (in this folder) in your browser after downloading.
+
 This kit is a set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup over a few short conversations, and never overwrites anything you already have without showing you first.
 
 ## Before you start
