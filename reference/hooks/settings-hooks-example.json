@@ -1,0 +1,84 @@
+{
+  "_comment": "EXCERPT of the hooks block from a live ~/.claude/settings.json - the wiring half of a hook install. A hook script with no entry here NEVER FIRES and never says so. Each entry: an event (PreToolUse, PostToolUse, Stop, ...), an optional matcher (which tool triggers it), and the command to run. statusMessage is optional; it is the text shown while the hook runs. The Python hooks are called as `python`; if your machine only has `python3` (common on macOS and Linux), change these commands and the `python -c` calls inside the two .sh scripts to match.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/deny-destructive.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ~/.claude/hooks/deny-git-add-all.py",
+            "statusMessage": "Checking git-add scope"
+          },
+          {
+            "type": "command",
+            "command": "python ~/.claude/hooks/deny-credential-paths.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/reindex-journal.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "_later_shelf_comment": "NOT part of the starter install, and not read by Claude Code under this key. When one of these hooks' moments comes, move its entry into the matching event list under \"hooks\" above, then run the two test lines in the hook file's header.",
+  "_later_shelf_hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ~/.claude/hooks/session-start.py"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ~/.claude/hooks/confirm-push.py",
+            "statusMessage": "Checking for push or deploy"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ~/.claude/hooks/protect-append-only.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ~/.claude/hooks/gate-show-before-save.py"
+          }
+        ]
+      }
+    ]
+  }
+}

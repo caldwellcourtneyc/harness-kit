@@ -1,0 +1,58 @@
+# A .gitignore for backing up ~/.claude to a PRIVATE git repo.
+#
+# Kit note: later shelf. The moment for it: the two-week check-in, if anything you built
+# has survived. After a month or two your harness is irreplaceable, and one bad edit or a
+# dead laptop loses it. Copy this file to ~/.claude/.gitignore, then `git init` there and
+# push to a PRIVATE repository.
+#
+# Before the FIRST push: run `git status` and read every file it lists. An early backup of
+# the harness this kit comes from pushed a login token that then had to be scrubbed from
+# the repo's history. Check settings.json too: an MCP server's API key can live in it.
+#
+# What's kept: CLAUDE.md, rules, skills, commands, hooks, settings, and each project's
+# memory folder (the hand-built, irreplaceable part). What's dropped: caches, logs, and
+# session transcripts (large and machine-specific; if you want them kept, see the
+# cleanupPeriodDays setting instead).
+
+# --- Secrets: never version these ---
+.credentials.json
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# --- Regenerable or machine-local ---
+cache/
+paste-cache/
+shell-snapshots/
+sessions/
+debug/
+backups/
+telemetry/
+tasks/
+session-env/
+plugins/
+todos/
+history.jsonl
+stats-cache.json
+*.log
+node_modules/
+*.bak
+
+# --- Hook runtime state (keep the scripts, drop what they write) ---
+hooks/state/
+
+# --- Projects: drop everything EXCEPT each project's memory folder ---
+/projects/*
+!/projects/*/
+/projects/*/*
+!/projects/*/memory/
+
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+*.swp
