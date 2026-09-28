@@ -156,6 +156,7 @@ button{font:inherit;cursor:pointer;color:inherit}
 .shelf-note{padding:16px 22px;background:var(--surface2);font-size:var(--fs-card)}
 .get{background:var(--pri);color:#fff;border-radius:16px;padding:clamp(26px,4vw,44px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px)}
 .get h2{font-size:clamp(1.8rem,3.2vw,2.6rem);margin-bottom:14px}
+.get p + p{margin-top:12px}
 .get .btn{background:var(--acc-fill);color:var(--on-acc);margin-top:18px;font-size:var(--fs-body)}
 .get .btn[aria-disabled=true]{opacity:.6;cursor:default}
 .get ol{list-style:none;counter-reset:s;display:grid;gap:12px}
@@ -259,6 +260,7 @@ footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
     <div>
       <h2 class="d" id="geth" tabindex="-1">Get the kit</h2>
       <p>A set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup over a few short conversations, and never overwrites anything you already have without showing you first. It writes to Claude Code's settings folder in your home directory (~/.claude), so what it builds works in every project, and you can start it from any folder.</p>
+      <p>This grew out of one person's way of working. Some of it will fit you and some won't. Keep what helps, skip what doesn't, and expect your harness to take its own shape.</p>
       <a class="btn" id="dl" href="https://github.com/caldwellcourtneyc/harness-kit/archive/refs/heads/main.zip">Download the kit (zip)</a>
       <p class="small" id="dlnote">This harness can also work with Codex. The kit includes an adapter for it.</p>
     </div>
@@ -333,7 +335,7 @@ const STEPS=[
  {id:'guardrails',name:'Guardrails',title:'Scripts that block the damaging move',
   pain:"It just deleted my work.", fix:"Scripts that block risky commands",
   hurt:"In the flow of a session, Claude can do the risky thing you'd never approve if you were watching: wipe your uncommitted work, overwrite the copy stored online, commit a password.",
-  add:"Guards: small scripts that run just before any command Claude sends to your computer, and can stop it outright. The kit ships four, each with a test that proves it blocks.",
+  add:"Guards: small scripts that run just before any command Claude sends to your computer, and can stop it outright. The kit ships three, each with a test that proves it blocks.",
   builtin:"hooks, the mechanism that lets a script run on an event and block it.",
   ask:"Commit everything and push.",
   before:"Committed 23 files and pushed.",

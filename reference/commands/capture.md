@@ -4,7 +4,7 @@ Loss-prevention sweep that routes important items from the current session to du
 method is general; the destination list is her storage map made generic, so rewrite it to match
 where your things actually live. Placeholders to fill: <your journal folder>, <your task tracker>,
 <your taste file>, <your system-work folder>, <your project map>. Drop any destination you don't
-keep. Install at ~/.claude/commands/capture.md. -->
+keep. Install as a skill at ~/.claude/skills/capture/SKILL.md (see SEED.md, Phase 3). -->
 
 ## What This Is
 
@@ -18,18 +18,18 @@ The point is to make capture more clearly defined — replacing the verbalized "
 - Mid-session curiosity ("did we get everything so far?")
 - End of session as the durable sweep
 - Anytime the worry hits ("are we losing something?")
-- Inside wander mode if they want to route flagged items
+- During open-ended thinking, if they want to route flagged items
 
 **Claude invokes unprompted when:**
 - The user signals session wrap ("let's wrap up," "I'm done," "good session")
 - A substantive decision or pattern lands without explicit capture
-- A wander session is ending (mode shift)
+- An open-ended exploration is ending (mode shift)
 
 ## When NOT to Fire
 
 - Trivial sessions with no substantive content
 - Inside an active /decide flow — /decide is exploring; capture comes after
-- Auto-firing mid-wander (user-invoked is fine; Claude-auto would kill the wander)
+- Auto-firing mid-exploration (user-invoked is fine; Claude-auto would kill it)
 
 ## Protocol
 

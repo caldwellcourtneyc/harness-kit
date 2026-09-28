@@ -4,15 +4,14 @@ Capture session learnings as a journal entry. Default is a session line, TL;DR, 
 
 <!-- Kit note (delete this comment when you install): from Courtney's /journal. The
 retrieval-not-documentation principle, the draft-first gate, and the length gate are general.
-Placeholders to fill: <your journal folder>, <your artifacts folder> (for wander companions),
-<your code folders> (for the dev health scan), <your task tracker> (drop those lines if you
+Placeholders to fill: <your journal folder>, <your code folders> (for the dev health scan), <your task tracker> (drop those lines if you
 don't keep one), and <your friction folder>. The friction section points at two files you
 create from the kit's reference/friction/ folder (its README walks you through it); the weekly
 synthesis that reads the log lives there too, so install both halves together. The restating
 check needs reference/tools/journal-overlap.py copied to ~/.claude/tools/. The Session line
 points at the session transcript; Claude Code deletes old transcripts after a set number of
 days (cleanupPeriodDays in settings.json), so raise that if you want the pointers to keep
-working. Install at ~/.claude/commands/journal.md. -->
+working. Install as a skill at ~/.claude/skills/journal/SKILL.md (see SEED.md, Phase 3). -->
 
 ---
 
@@ -64,32 +63,6 @@ expand without justifying each section.
 If the user asks for "brief" or "quick," hard cap: the
 minimum entry only (Session line, TL;DR, mirror fields,
 Tags). Skip Tidy-up dev checks. Friction Capture still runs.
-
-## Wander Sessions
-
-For wander sessions, capture differs: light journal entry + companion Artifact.
-
-### Light journal entry
-
-Standard `## [time] — Wander: [topic]` section:
-- **Session line** — same as every entry (see Sections)
-- **TL;DR** — 2-3 sentences naming the topic and carry-forwards
-- **User's words** — same as every entry; wanders are where their best lines live
-- **Artifact** — Link to companion Artifact
-- **Learnings (Claude meta)** — Optional
-- **Observations** — Optional
-- **Tags** — including `#wander`
-
-### Companion Artifact
-
-`<your artifacts folder>/Wander-YYYY-MM-DD-[Topic-Slug].md`. All sections optional except Overview; include only those with content.
-
-- **Comprehensive Overview** — Path narrative: the actual sequence of pushback, reframe, pushback that produced the conclusions. Not a summary.
-- **Pivotal Sparks / Hidden Insights** — Reframes and new framings.
-- **Tension Points** — Corrections, pushback, unresolved trade-offs.
-- **Open Questions / Blockers** — Unresolved threads. Candidates for follow-up wanders or `<your task tracker>`.
-
-Skip Action Items and Next Moves — wanders resist them. Show drafts of both before saving. Reindex after.
 
 ## Pre-save check
 
@@ -158,7 +131,6 @@ trimmed lines, not paraphrase, so a clean result is not proof the draft doesn't 
 - **Show the banner wherever the draft is shown.** The banner travels with the draft.
 - **Brief/quick mode:** the banner still runs; the cap is already the minimum entry, so it
   just confirms N and lists nothing.
-- **Wander sessions:** count against the light-entry shape (see Wander Sessions above), not 10 lines.
 - The existing **Override** stands: if the user asked for a full entry, expand without
   justifying each section — but still print the banner so N is on the record.
 

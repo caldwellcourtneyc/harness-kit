@@ -34,10 +34,10 @@ the user and Claude. The point is the pause AND the surfacing.
 
 - Small contained changes (typo, single-line refactor)
 - Mechanical execution of a decision already made
-- Wander/exploration mode — kills the wander. (The round-one
+- Open-ended exploration — kills it. (The round-one
   generative-collaboration trigger is for committed design or
   decision work that's heading somewhere — NOT for open-ended
-  wander. When unsure whether it's a wander, don't fire.)
+  thinking. When unsure which it is, don't fire.)
 - Inside an active /decide flow — that's doing this work already
 
 ## Protocol
@@ -111,6 +111,5 @@ changes outcomes often enough to keep firing it unprompted.
 - Not /decide (that's for forks with defined paths and deeper
   exploration)
 - Not /surface (that's for unshared insights at session edges)
-- Not /wander (that's exploratory thinking without destination)
 - Not a replacement for any checkpoint questions in your
   CLAUDE.md — those still apply as flavor within each angle

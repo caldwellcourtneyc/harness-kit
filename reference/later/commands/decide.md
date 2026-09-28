@@ -3,7 +3,7 @@ Decision clarity partner for ambiguous calls — business, personal, technical, 
 <!-- Kit note (delete this comment when you install): from Courtney's /decide. Placeholders to
 fill: <your journal search> (grep over your journal folder works on day one), <your task
 tracker>, <your decisions folder>, <your taste file>, <your priorities doc>. Drop any context
-source you don't keep. Install at ~/.claude/commands/decide.md. -->
+source you don't keep. Install as a skill at ~/.claude/skills/decide/SKILL.md (see SEED.md, Phase 3). -->
 
 Invocation: `/decide [what you're considering]`
 or just `/decide` and the user will explain.

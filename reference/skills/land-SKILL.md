@@ -18,7 +18,7 @@ Before this existed, the close-out was typed piecemeal, three to five messages a
 
 ## Step 0: Clock check (always first)
 
-Run `date` (or `Get-Date` in PowerShell) and state it: "Landing as of Wednesday 2026-07-09, 3:40pm."
+Run `date` (or `Get-Date` in PowerShell) and state it: "Landing as of Thursday 2026-07-09, 3:40pm."
 
 - Never trust the conversation for today's date. Sessions often span days, so the date at the start is stale by the close.
 - Never ask the user what time it is. The clock is authoritative.

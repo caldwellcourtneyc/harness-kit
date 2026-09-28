@@ -39,7 +39,6 @@
 | `/reframe` | Name the frame the work assumes, then offer genuinely different ones | Starter | Nothing | `reference/commands/reframe.md` |
 | `/decide` | A thinking partner for a call you're stuck on | Later: a decision with real tradeoffs | Nothing | `reference/later/commands/decide.md` |
 | `/prd` | Question an idea before building: walk the design tree, resolve the decisions it depends on | Later: about to build something with real scope | Nothing | `reference/later/commands/prd.md` |
-| `/wander` | Think out loud with no destination | Later: you want to think something through with no task at the end | Nothing | `reference/later/commands/wander.md` |
 
 ## Building and showing
 
@@ -59,7 +58,7 @@ A hook is a script Claude Code runs on an event: before a shell command, after a
 | Destructive-command guard | Before shell commands | Blocks `git reset --hard`, `git push --force`, `git clean -f`, `rm -rf` on broad paths, and similar | Starter | `reference/hooks/deny-destructive.sh` |
 | Credential guard | Before shell commands | Blocks `git add`/`commit` that names `.env`, credential files, keys | Starter | `reference/hooks/deny-credential-paths.py` |
 | Stage-everything guard | Before shell commands | Blocks `git add -A` / `.` so only files named on purpose get committed | Starter | `reference/hooks/deny-git-add-all.py` |
-| Reindex reminder | After file writes | When a journal file changes, reminds Claude to update the search index, so the index can't quietly go stale | Starter, with journal search | `reference/hooks/reindex-journal.sh` |
+| Reindex reminder | After file writes | When a journal file changes, reminds Claude to update the search index, so the index can't quietly go stale | Later: when you add a search index for your journal | `reference/hooks/reindex-journal.sh` |
 | Push gate | Before shell commands | Stops `git push`, GitHub writes (PRs, issues, releases) and deploys until you say yes to that one | Later: your first repo with a remote, or first deploy. Starter if the seed's first look finds remotes | `reference/hooks/confirm-push.py` |
 | Append-only guard | Before file writes | Stops a whole-file rewrite of your journal or friction log, so a session working from an old copy can't erase entries another session added | Later: the first time you run two sessions at once (and give each its own git worktree) | `reference/hooks/protect-append-only.py` |
 | Session-start check | When a session starts | Tells Claude where you left off (this folder's handoff, your newest journal entry) and proves each guard is still wired in and blocking. Prints a few lines at most | Later: the two-week check-in | `reference/hooks/session-start.py` |
@@ -87,7 +86,6 @@ Small markdown files Claude Code loads every session (or only when matching file
 | `reference/example-rules.md` | A menu of nine collaboration rules, each with its reason, to pick from | Starter: offered in Phase 4, never pre-installed |
 | `reference/new-project-checklist.md` | What a new project needs on day one, including what goes in its CLAUDE.md | Later: starting a new project |
 | `reference/backup/gitignore` | A ready `.gitignore` for backing up `~/.claude` to a private git repo, with credentials excluded | Later: the two-week check-in, if anything you built has survived |
-| `reference/later/tools/yt-transcript.py` | Pulls a YouTube video's captions as text (a web fetch of the page gets nothing) | Later: the first YouTube link you want Claude to work with |
 
 ## Infrastructure (the plumbing the tools stand on)
 
@@ -103,4 +101,4 @@ Small markdown files Claude Code loads every session (or only when matching file
 
 **Not in the kit:** pieces of the source harness that are wired to one machine or one person's life (a live session dashboard, a task tracker with an API, scheduled routines, skills for personal projects). They'd arrive broken.
 
-**The day-one footprint, in one line:** CLAUDE.md with a Toolshelf and the few rules you picked, memory, a journal you can search, the close-out set, two thinking tools, four tested guards, and the friction loop. Everything else has a named moment and will be here when it comes.
+**The day-one footprint, in one line:** CLAUDE.md with a Toolshelf and the few rules you picked, memory, a journal you can search, the close-out set, two thinking tools, three tested guards, and the friction loop. Everything else has a named moment and will be here when it comes.

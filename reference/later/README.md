@@ -10,7 +10,6 @@ They're method files from Courtney's harness, with personal details, private sys
 
 - **decide.md**: a thinking partner for a call you're stuck on. Good questions and concrete scenarios, no pros-and-cons table, and a decision record only if you want one. *Reach for it when you're facing a decision with real tradeoffs.*
 - **prd.md**: questions an idea before any code gets written, one branch of the design at a time, and ends in either a short spec (a PRD) or a build plan. *Reach for it when you're about to build something with real scope: several files, something people will use, or work that spans sessions.*
-- **wander.md**: permission to think out loud with no destination. Claude stops steering you toward tasks, next steps, and summaries. *Reach for it when you want to think something through with no task or decision at the end of it.*
 
 ## skills/
 
@@ -18,9 +17,6 @@ They're method files from Courtney's harness, with personal details, private sys
 - **squint-SKILL.md**: a critique of anything you've made, read the way its audience will meet it rather than the way you'd explain it. *Reach for it before anything goes in front of other people.*
 - **ux-thinking-SKILL.md**: checks whether a screen or flow will make sense to a person before it gets built. *Reach for it on your first build that someone will click through.*
 
-## tools/
-
-- **yt-transcript.py**: pulls a YouTube video's captions as plain text. A web fetch of a YouTube page returns an empty shell, so without this Claude has nothing real to read. *Reach for it the first time you paste a YouTube link and want Claude to work with what's said in it.*
 
 ## Later-shelf pieces that live elsewhere in reference/
 

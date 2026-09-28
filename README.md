@@ -8,10 +8,13 @@ For a visual walkthrough, open `intro.html` (in this folder) in your browser aft
 
 This kit is a set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup over a few short conversations, and never overwrites anything you already have without showing you first.
 
+This grew out of one person's way of working. Some of it will fit you and some won't. Keep what helps, skip what doesn't, and expect your harness to take its own shape.
+
 ## Before you start
 
 - **What it costs:** a few sessions to set up, spread out however you like.
 - **What it asks of you:** pruning. Every always-on piece is read every session, so the kit sets a two-week check-in to remove what hasn't earned its place.
+- **What it needs:** Python for the guards and small scripts, and Node.js for the weekly friction review. On Windows, also Git for Windows, which provides bash. Your Claude checks for these first.
 - **Where it goes:** into Claude Code's settings folder in your home directory (`~/.claude`), so what it builds works in every project.
 - **How you'll know it worked:** a fresh session surprises you with something from three sessions ago that you didn't re-tell it.
 
@@ -35,7 +38,7 @@ In the order you'd add them.
 | **3. Journal** | "Didn't we already decide this?" Why you decided something, what you tried that failed, and what worked all lived in chats that are gone. So you re-decide, re-try, and re-explain. | A short dated entry at the end of each session, a way for Claude to search them, and a standing instruction to check the journal whenever you refer back to earlier work: past decisions, what failed before, approaches that worked.<br><br>*Already in Claude Code:* saved transcripts of past sessions, but no way to search them by what was said. This is the piece the harness adds. |
 | **4. Skills** | "Doesn't follow a proven process." Claude wings it instead of following a proven process. | Skills. A skill is a written method for one kind of job: the steps, the checks, what good looks like, and the mistakes to avoid. Claude uses it when the task matches, or when you type its name.<br><br>*Already in Claude Code:* the skill format, and a few general skills like code review. |
 | **5. Close-out** | "Good stuff gets lost when the session ends." When a session ends, you lose what you decided and why, what you tried that didn't work, and what's next. | One skill, /land, that runs the close-out: says what it didn't get to say, files each thing worth keeping where it belongs, updates the handoff, and drafts a short journal entry for your OK.<br><br>*Already in Claude Code:* saved transcripts, but nothing that pulls out what mattered. |
-| **6. Guardrails** | "It just deleted my work." In the flow of a session, Claude can do the risky thing you'd never approve if you were watching: wipe your uncommitted work, overwrite the copy stored online, commit a password. | Guards: small scripts that run just before any command Claude sends to your computer, and can stop it outright. The kit ships four, each with a test that proves it blocks. Instructions can guide. Only a script can guarantee.<br><br>*Already in Claude Code:* hooks, the mechanism that lets a script run on an event and block it. |
+| **6. Guardrails** | "It just deleted my work." In the flow of a session, Claude can do the risky thing you'd never approve if you were watching: wipe your uncommitted work, overwrite the copy stored online, commit a password. | Guards: small scripts that run just before any command Claude sends to your computer, and can stop it outright. The kit ships three, each with a test that proves it blocks. Instructions can guide. Only a script can guarantee.<br><br>*Already in Claude Code:* hooks, the mechanism that lets a script run on an event and block it. |
 | **7. Learning loop** | "Same correction, third time." You make the same correction for the third time, because nothing turned the first two into a permanent fix. | At each session's close-out, Claude notes friction: things you corrected, work called done without proof. Once a week, a scheduled task in Claude Code (or a standing line that runs it in your first session of the week) reads the log for what repeats, and each repeat gets a permanent fix.<br><br>*Already in Claude Code:* nothing that tracks repeated mistakes. |
 
 ### What that looks like

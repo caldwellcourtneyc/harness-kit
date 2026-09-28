@@ -1,9 +1,9 @@
 {
-  "_comment": "EXCERPT of the hooks block from a live ~/.claude/settings.json - the wiring half of a hook install. A hook script with no entry here NEVER FIRES and never says so. Each entry: an event (PreToolUse, PostToolUse, Stop, ...), an optional matcher (which tool triggers it), and the command to run. statusMessage is optional; it is the text shown while the hook runs. The Python hooks are called as `python`; if your machine only has `python3` (common on macOS and Linux), change these commands and the `python -c` calls inside the two .sh scripts to match.",
+  "_comment": "EXCERPT of the hooks block from a live ~/.claude/settings.json - the wiring half of a hook install. Copy ONLY the \"hooks\" block into your settings.json, never this whole file. A hook script with no entry here NEVER FIRES and never says so. Each entry: an event (PreToolUse, PostToolUse, Stop, ...), an optional matcher (which tool triggers it), and the command to run. Match Bash|PowerShell on Windows: Claude Code can run commands through either, and a guard wired to Bash alone never sees a PowerShell command. statusMessage is optional; it is the text shown while the hook runs. The Python hooks are called as `python`; if your machine only has `python3` (common on macOS and Linux), change these commands and the `python -c` call inside deny-destructive.sh to match.",
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash|PowerShell",
         "hooks": [
           {
             "type": "command",
@@ -25,20 +25,9 @@
           }
         ]
       }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/reindex-journal.sh"
-          }
-        ]
-      }
     ]
   },
-  "_later_shelf_comment": "NOT part of the starter install, and not read by Claude Code under this key. When one of these hooks' moments comes, move its entry into the matching event list under \"hooks\" above, then run the two test lines in the hook file's header.",
+  "_later_shelf_comment": "NOT part of the starter install, and not read by Claude Code under this key. When one of these hooks' moments comes, move its entry into the matching event list under \"hooks\", then run the two test lines in the hook file's header. The reindex reminder belongs here until you add a search index for your journal.",
   "_later_shelf_hooks": {
     "SessionStart": [
       {
@@ -76,6 +65,17 @@
           {
             "type": "command",
             "command": "python ~/.claude/hooks/gate-show-before-save.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/reindex-journal.sh"
           }
         ]
       }

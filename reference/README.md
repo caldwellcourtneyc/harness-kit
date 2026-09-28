@@ -30,7 +30,7 @@ The starter tools. Reading order if you're studying the form: **reframe.md** (a 
 ## hooks/: mechanical enforcement, both halves shown
 
 - **deny-destructive.sh**, **deny-credential-paths.py**, **deny-git-add-all.py:** guards that run before shell commands and block the move outright. Read each one's header: they say what they catch, what they deliberately ignore, and their known gaps.
-- **reindex-journal.sh:** after a write into your journal folder, reminds Claude to update the search index. Set the folder and the message in the two variables at the top. Also shows the JSON output shape a hook needs for its message to reach Claude.
+- **reindex-journal.sh:** later shelf, once you add a search index. After a write into your journal folder, reminds Claude to update the search index. Set the folder and the message in the two variables at the top. Also shows the JSON output shape a hook needs for its message to reach Claude.
 - **confirm-push.py**, **protect-append-only.py**, **gate-show-before-save.py**, **session-start.py:** later-shelf hooks: a push and deploy gate, a guard against overwriting the journal from an old copy, a mechanical show-before-save gate on memory and rules, and a session-start check that says where you left off and re-tests your guards. See `later/README.md` for each one's moment.
 - **settings-hooks-example.json:** the other half of every hook install, the `settings.json` wiring. A script with no entry here never fires, silently. The later-shelf hooks sit in a separate block to move in when their moment comes.
 
@@ -42,7 +42,7 @@ The journal command logs friction at session close; this folder is the half that
 
 ## later/: the "add it when you need it" shelf
 
-Six more tools and a transcript script, each with the moment it starts paying for itself. See `later/README.md`, which also lists the later-shelf hooks, rule, checklist and backup file that live elsewhere in this folder. During setup, those moments go into your CLAUDE.md's Toolshelf section, so Claude offers each one when its moment comes.
+Five more tools, each with the moment it starts paying for itself. See `later/README.md`, which also lists the later-shelf hooks, rule, checklist and backup file that live elsewhere in this folder. During setup, those moments go into your CLAUDE.md's Toolshelf section, so Claude offers each one when its moment comes.
 
 ## Setup references
 

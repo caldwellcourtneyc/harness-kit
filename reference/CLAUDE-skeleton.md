@@ -53,11 +53,11 @@ The single most important design fact: **this file loads into every session.** E
 
 > *Job: make the "add it later" tools actually come back. The first copy of this kit told its reader when each later tool would help, then left that knowledge in his head. His Claude never offered any of them, and he never went back. A line here is read every session, so Claude can notice the moment and offer the tool. Each line: the moment, the tool, where its file is. When a tool gets installed, move its line out of this section (or delete it). The seed fills this in during the shopping trip; the two-week check-in reviews it.*
 
-- **[Moment: e.g. "facing a decision with real tradeoffs"]** → offer `/decide` (kit: `reference/later/commands/decide.md`)
+- **[Moment: e.g. "facing a decision with real tradeoffs"]** → offer `/decide` (kit: `<full path to the kit>/reference/later/commands/decide.md`)
 - **[Moment: "about to build something with real scope"]** → offer `/prd`
 - **[Moment: "about to show work to other people"]** → offer `/squint`
-- **[Moment: "the first repo with a remote, or the first deploy"]** → offer the push gate (kit: `reference/hooks/confirm-push.py`)
-- **[Moment: "starting a new project"]** → offer the new-project checklist (kit: `reference/new-project-checklist.md`)
+- **[Moment: "the first repo with a remote, or the first deploy"]** → offer the push gate (kit: `<full path to the kit>/reference/hooks/confirm-push.py`)
+- **[Moment: "starting a new project"]** → offer the new-project checklist (kit: `<full path to the kit>/reference/new-project-checklist.md`)
 - [One line per shelf tool the person skipped. Offer once per moment, never nag; if they decline twice, ask whether to drop the line.]
 
 ## Collaboration rules
