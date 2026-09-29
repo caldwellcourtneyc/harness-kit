@@ -6,14 +6,14 @@ Claude Code starts as a brilliant stranger. It knows a lot, but starts off knowi
 
 For a visual walkthrough, open `intro.html` (in this folder) in your browser after downloading.
 
-This kit is a set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup over a few short conversations, and never overwrites anything you already have without showing you first.
+This kit is a set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup in one sitting, finished by a check-in two weeks later, and never overwrites anything you already have without showing you first.
 
 This grew out of one person's way of working. Some of it will fit you and some won't. Keep what helps, skip what doesn't, and expect your harness to take its own shape.
 
 ## Before you start
 
-- **What it costs:** a few sessions to set up, spread out however you like.
-- **What it asks of you:** pruning. Every always-on piece is read every session, so the kit sets a two-week check-in to remove what hasn't earned its place.
+- **What it costs:** one sitting to set up, plus a check-in two weeks later that your Claude puts on your calendar.
+- **What it asks of you:** pruning. Every always-on piece is read every session, so the check-in also removes what hasn't earned its place.
 - **What it needs:** Python for the guards and small scripts, and Node.js for the weekly friction review. On Windows, also Git for Windows, which provides bash. Your Claude checks for these first.
 - **Where it goes:** into Claude Code's settings folder in your home directory (`~/.claude`), so what it builds works in every project.
 - **How you'll know it worked:** a fresh session surprises you with something from three sessions ago that you didn't re-tell it.
@@ -22,7 +22,7 @@ This grew out of one person's way of working. Some of it will fit you and some w
 
 1. Download this repo (the green **Code** button, then **Download ZIP**) and unzip it somewhere you'll keep it. It unzips as a folder called `harness-kit-main`. Or clone it.
 2. Open Claude Code in any folder and say: `Read START-HERE.md and SEED.md in <the path to harness-kit-main>, then let's begin.`
-3. Expect a conversation, not an installer. It starts by looking at what you already have and asking how you work, then builds the pieces below roughly in order. Stop after any conversation and pick it up next time.
+3. Expect a conversation, not an installer. It starts by looking at what you already have and asking how you work, then builds light versions of the pieces below. If you stop partway, your Claude offers to pick up where you left off.
 4. Read each file before you add it. That includes this kit; your Claude shows you each one first.
 
 This harness can also work with Codex. The kit includes an adapter for it (`CODEX.md`).
@@ -45,13 +45,13 @@ In the order you'd add them.
 
 | | You say | No harness | With harness |
 |---|---|---|---|
-| **Instructions** | "Build me a landing page for the bakery." | "Here's a complete landing page! I built a hero section, the menu, testimonials and a contact form..." | "Before I build all of it: here are three quick directions to react to, since you typically prefer to choose from real examples over reading descriptions." |
-| **Memory** | "Draft the update for the client." | "Sure! Here's a detailed, formal update covering all the key points..." | "Here's a three-line version, inline. You told me she reads on her phone and skips attachments." |
-| **Journal** | "Should we move the site to a static generator?" | "Good idea! Static sites are fast and cheap to host. Here's how to migrate..." | "We looked at this on Aug 12 and stayed put, because the booking form needs a server. Has that changed?" |
-| **Skills** | "Look over my pitch deck before I send it." | "Looks great! Maybe tighten the wording on slide 3." | "Reading it cold, the way an investor will: by slide 2 I still can't tell who it's for. Three things would stop them, most serious first, plus the slide that's working best so you keep it." |
-| **Close-out** | "OK, that's it for today." | "Great work today! Let me know if you need anything else." | "Landing. Two decisions to file, one thing I didn't get to say, and a journal draft below. Nothing's saved until you OK it." |
+| **Instructions** | "Build me a landing page for the bakery." | "Here's a complete landing page. I built a hero section, the menu, testimonials and a contact form..." | "Before I build all of it: here are three quick directions to react to, since you typically prefer to choose from real examples over reading descriptions." |
+| **Memory** | "Draft the update for the client." | "Here's the update: a detailed, formal version covering all the key points..." | "Here's a three-line version, inline. You told me she reads on her phone and skips attachments." |
+| **Journal** | "Should we move the site to a static generator?" | "That could work well. Static sites are fast and cheap to host. Here's how to migrate..." | "We looked at this on Aug 12 and stayed put, because the booking form needs a server. Has that changed?" |
+| **Skills** | "Look over my pitch deck before I send it." | "It's in good shape. I'd tighten the wording on slide 3." | "Reading it cold, the way an investor will: by slide 2 I still can't tell who it's for. Three things would stop them, most serious first, plus the slide that's working best so you keep it." |
+| **Close-out** | "OK, that's it for today." | "Sounds good. Let me know if you need anything else." | "Landing. Two decisions to file, one thing I didn't get to say, and a journal draft below. Nothing's saved until you OK it." |
 | **Guardrails** | "Commit everything and push." | "Committed 23 files and pushed." | "Blocked: .env holds your API keys. I committed the other 22. Want .env added to .gitignore?" |
-| **Learning loop** | "You used the old logo again." | "Sorry! I'll use the new one." | "That's the third time. This week's review suggests adding the current logo's filename to your project instructions, so it stops." |
+| **Learning loop** | "Did you fix the signup form?" | "Yes, I updated the signup form validation." | "Not yet. I ran a test signup and it still fails on emails with a plus sign. Fixing that next." |
 
 ## The half no file can install
 
@@ -70,17 +70,21 @@ Some tools earn their place later. Setup writes each one into your instructions 
 
 **Deciding and planning**
 - You're facing a decision with real tradeoffs → `/decide`, a decision partner that lays out the real tradeoffs
+- You're about to commit to something that's expensive to undo → `/x-ray`, a check on what you're both assuming and not asking
+- You're not sure you're solving the right problem → `/reframe`, which names what the work assumes and offers other ways to see it
 - You're starting a new project → a new-project checklist: what a project needs on day one
 - You're about to build something with real scope → `/prd`, which questions the idea before any code gets written
 - You're building the first thing real people will click through → `/ux-thinking`, which checks it will make sense before it's built
 
 **Before it goes out**
 - You're correcting the look of the same thing twice in a row → `/options`, real variants side by side to react to
+- You're building your first web page → three layout rules that load only when Claude works on web files
 - You're about to show work to other people → `/squint`, a cold read the way your audience will meet it
 - You're working on a codebase that really matters → `/codehealth`, a review for the mistakes AI-written code tends to make
 - You're about to push code or deploy for the first time → a push gate: nothing goes out without your yes, every time
 
 **As your setup grows**
+- You're coming back to a project after days away → `/pickup`, which rebuilds where you left off and what was promised
 - You're running two sessions at the same time → an append-only guard: one session can't overwrite what the other wrote
 - Two weeks in, at your setup check-in → a session-start check: says where you left off, and proves your guards still work
 
@@ -89,7 +93,7 @@ Some tools earn their place later. Setup writes each one into your instructions 
 - **START-HERE.md** and **SEED.md:** where your Claude begins. SEED is the protocol it follows with you.
 - **CATALOG.md:** every tool, tiered, with what each needs in order to actually work.
 - **guide/:** how the pieces fit, why saved notes don't come back up by themselves, and the habits.
-- **reference/:** real files from a working harness, lightly generalized, as worked examples.
+- **reference/:** real files from a working harness, lightly generalized, as worked examples. Day one uses the light starters in `reference/day-one/`; the rest are the full versions they grow into.
 - **CODEX.md:** the adapter for Codex.
 
 ---

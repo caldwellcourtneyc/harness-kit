@@ -4,7 +4,7 @@ Loss-prevention sweep that routes important items from the current session to du
 method is general; the destination list is her storage map made generic, so rewrite it to match
 where your things actually live. Placeholders to fill: <your journal folder>, <your task tracker>,
 <your taste file>, <your system-work folder>, <your project map>. Drop any destination you don't
-keep. Install as a skill at ~/.claude/skills/capture/SKILL.md (see SEED.md, Phase 3). -->
+keep. Install as a skill at ~/.claude/skills/capture/SKILL.md (see SEED.md, "Installing a skill"). -->
 
 ## What This Is
 

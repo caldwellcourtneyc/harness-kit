@@ -17,9 +17,13 @@ The thing to study is the *form*: trigger, action, scope, and the incident that 
 - **MEMORY-index-example.md:** a real memory index, one line per fact, each with a phrase saying when to open the full file. The index loads every session; the files behind it load on demand. The format is the point; every entry is someone else's.
 - **feedback-critique-not-verify-on-visual-builds.md:** one full memory file showing the anatomy (frontmatter, the incident, **Why**, **How to apply**, links). It records one of Claude's own failure modes, encoded so it can't quietly recur.
 
+## day-one/: the thin starters
+
+- **journal-SKILL.md** and **land-SKILL.md:** the versions the seed installs on day one, about 40 lines each. They close the loop (every session writes a journal entry, logs friction, and updates the handoff) without the months of refinement in the full versions below. Each ends with a pointer to its full version; grow toward it when you miss a piece.
+
 ## commands/ and skills/: packaged methods
 
-The starter tools. Reading order if you're studying the form: **reframe.md** (a whole method in a few lines, with an empty lessons table waiting for real use), **x-ray.md** (a structured checkpoint), **pickup-SKILL.md** (session re-entry), **land-SKILL.md** (a sequencer that calls other tools), then the three big ones.
+The full versions. Reading order if you're studying the form: **reframe.md** (a whole method in a few lines, with an empty lessons table waiting for real use), **x-ray.md** (a structured checkpoint), **pickup-SKILL.md** (session re-entry), **land-SKILL.md** (a sequencer that calls other tools), then the three big ones.
 
 - **x-ray.md**, **reframe.md:** thinking at forks. Fully general.
 - **pickup-SKILL.md:** cold re-entry: reconstruct commitments, check what's actually on disk, then continue or close.
@@ -47,7 +51,7 @@ Five more tools, each with the moment it starts paying for itself. See `later/RE
 ## Setup references
 
 - **skill-authoring.md:** how to write a skill whose trigger actually fires. The seed reads it before installing any skill; keep it for writing your own.
-- **example-rules.md:** a menu of nine collaboration rules with their reasons, offered in the seed's Phase 4. Pick, never pre-install.
+- **example-rules.md:** a menu of nine collaboration rules with their reasons, offered at the seed's two-week check-in. Pick, never pre-install.
 - **new-project-checklist.md:** later shelf. What a new project needs on day one.
 - **backup/gitignore:** later shelf. A ready `.gitignore` for backing up `~/.claude` to a private repo.
 

@@ -11,7 +11,7 @@ synthesis that reads the log lives there too, so install both halves together. T
 check needs reference/tools/journal-overlap.py copied to ~/.claude/tools/. The Session line
 points at the session transcript; Claude Code deletes old transcripts after a set number of
 days (cleanupPeriodDays in settings.json), so raise that if you want the pointers to keep
-working. Install as a skill at ~/.claude/skills/journal/SKILL.md (see SEED.md, Phase 3). -->
+working. Install as a skill at ~/.claude/skills/journal/SKILL.md (see SEED.md, "Installing a skill"). -->
 
 ---
 
@@ -138,8 +138,8 @@ trimmed lines, not paraphrase, so a clean result is not proof the draft doesn't 
 ```
 # January 16, 2026 - 10am
 ```
-Use the time the user provides. If none given, use
-general time of day (morning/afternoon/evening). If
+Read the clock (`date`, or `Get-Date` in PowerShell)
+for the date and time. Never ask the user. If
 multiple entries for the same day, append with a new
 time-stamped section.
 

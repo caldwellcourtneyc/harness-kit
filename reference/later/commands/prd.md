@@ -2,7 +2,7 @@ Interrogate an idea before building it — walk the design tree, resolve depende
 
 <!-- Kit note (delete this comment when you install): from Courtney's /prd. Placeholder to fill:
 <your journal search> (grep over your journal folder works on day one). The task-tracker steps
-apply only if you keep one. Install as a skill at ~/.claude/skills/prd/SKILL.md (see SEED.md, Phase 3). -->
+apply only if you keep one. Install as a skill at ~/.claude/skills/prd/SKILL.md (see SEED.md, "Installing a skill"). -->
 
 Stress-test the idea before implementation. You are not planning — you are surfacing
 decisions the user doesn't yet know they need to make, finding contradictions, and making

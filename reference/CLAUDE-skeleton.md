@@ -51,9 +51,10 @@ The single most important design fact: **this file loads into every session.** E
 
 ## Toolshelf (tools not installed yet, and when to offer them)
 
-> *Job: make the "add it later" tools actually come back. The first copy of this kit told its reader when each later tool would help, then left that knowledge in his head. His Claude never offered any of them, and he never went back. A line here is read every session, so Claude can notice the moment and offer the tool. Each line: the moment, the tool, where its file is. When a tool gets installed, move its line out of this section (or delete it). The seed fills this in during the shopping trip; the two-week check-in reviews it.*
+> *Job: make the "add it later" tools actually come back. The first copy of this kit told its reader when each later tool would help, then left that knowledge in his head. His Claude never offered any of them, and he never went back. A line here is read every session, so Claude can notice the moment and offer the tool. Each line: the moment, the tool, where its file is. When a tool gets installed, move its line out of this section (or delete it). The seed writes this section first, before building anything else; the two-week check-in reviews it.*
 
 - **[Moment: e.g. "facing a decision with real tradeoffs"]** → offer `/decide` (kit: `<full path to the kit>/reference/later/commands/decide.md`)
+- **[Moment: "about to commit to a decision that's expensive to undo"]** → offer `/x-ray` (kit: `<full path to the kit>/reference/commands/x-ray.md`)
 - **[Moment: "about to build something with real scope"]** → offer `/prd`
 - **[Moment: "about to show work to other people"]** → offer `/squint`
 - **[Moment: "the first repo with a remote, or the first deploy"]** → offer the push gate (kit: `<full path to the kit>/reference/hooks/confirm-push.py`)
@@ -73,8 +74,14 @@ The single most important design fact: **this file loads into every session.** E
 >
 > *Links must point at real files.* If you use a link style like `[[rule-name]]` to point at those files, Claude will sometimes invent a plausible-looking link to a file that doesn't exist. It looks like depth and delivers nothing. Add a line here: "before writing a link to a file, check the file exists; if it doesn't yet, say so in the same sentence."
 
+## Setup in progress (remove when setup is done)
+
+> *Job: keep the bootstrap itself from depending on someone remembering to restart it. If the setup sitting ends early, this line makes the next session offer to continue.*
+
+- Harness setup in progress: offer to continue at Step [N] (kit: `<full path to the kit>/SEED.md`).
+
 ## Check-in
 
-> *Job: an expiry date, so the harness gets pruned instead of only growing.*
+> *Job: an expiry date, so the harness gets pruned instead of only growing. Also the second half of setup. The line alone isn't enough, because it depends on a session reading it on the right day: the seed also puts the date on a scheduled task or a calendar.*
 
-- [Date two weeks after setup]: review what got installed. Has a fresh session surprised you with something from a past one yet? Did a weekly friction read run, and did you read it? Does every guard still block its test command? Go through the Toolshelf: did any moment come up? Remove anything that hasn't earned its keep. Then rebuild the shelf page (everything installed, and what's still on the Toolshelf) so you can see what you have.
+- [Date two weeks after setup]: run the check-in in SEED.md (kit: `<full path to the kit>/SEED.md`). Has a fresh session surprised you with something from a past one yet? Does every guard still block its test command? Go through the Toolshelf: did any moment come up? Remove anything that hasn't earned its keep. Add the friction reader and its weekly owner, and grow the thin starters where something was missing. Then build the shelf page (everything installed, and what's still on the Toolshelf) so you can see what you have.

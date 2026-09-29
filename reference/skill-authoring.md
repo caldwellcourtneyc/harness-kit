@@ -1,6 +1,6 @@
 # Writing skills that actually fire
 
-Read this before writing or editing any file in `~/.claude/skills/` (or `~/.claude/commands/`). The seed uses it in Phase 3 when it installs the kit's tools as skills, and it's the reference for every skill you write after that.
+Read this before writing or editing any file in `~/.claude/skills/` (or `~/.claude/commands/`). The seed uses it on day one, before it installs the first skill, and it's the reference for every skill you write after that.
 
 **Why it exists:** a skill that never triggers looks exactly like a skill that works. It sits in the folder, `/name` still runs it, and nothing tells you Claude has stopped reaching for it on its own. In the source harness, an audit found 7 of 12 commands had lost their triggers this way, some of them for months, from the formatting mistake described first below.
 

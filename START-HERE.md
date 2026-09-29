@@ -18,10 +18,10 @@ The first time this setup was handed to someone, it was a folder of files. The j
 
 ## What's in the box
 
-- **SEED.md:** the main event. The protocol your Claude follows, in short phases you can spread over a few sessions.
+- **SEED.md:** the main event. The protocol your Claude follows: one sitting to set up, then a check-in two weeks later that finishes the job.
 - **guide/:** written for your Claude, readable by you. How the pieces fit (`architecture.md`), why notes don't surface on their own (`retrieval.md`), and the habits that make the whole thing compound (`operator-practices.md`).
 - **CATALOG.md:** every tool in the kit, tiered (start here / add when the moment comes), each with what it needs in order to actually work.
-- **reference/:** real files from a working harness, lightly generalized: rules, memory examples, skills, commands, hooks, and the friction loop. Each is marked where it's personal calibration rather than general method.
+- **reference/:** real files from a working harness, lightly generalized. Day one installs the light starters in `reference/day-one/`; the rest are the full versions they grow into: rules, memory examples, skills, commands, hooks, and the friction loop. Each is marked where it's personal calibration rather than general method.
 - **CODEX.md:** a short adapter if you also use Codex and want it inside the same harness.
 
 ## How to run it
@@ -34,8 +34,8 @@ The first time this setup was handed to someone, it was a folder of files. The j
 
 ## What it costs
 
-- **A few sessions to set up.** The seed is paced so you can stop at the end of any phase and still be better off.
-- **Upkeep.** Every always-on piece is read every session, so the harness needs pruning, not just adding. The seed sets a two-week check-in for exactly this.
+- **One sitting to set up, and a check-in two weeks later.** Day one installs light versions of a few pieces. The check-in, which goes on your calendar during setup, adds the rest once you've used it. If you stop partway, your Claude offers to pick up where you left off.
+- **Upkeep.** Every always-on piece is read every session, so the harness needs pruning, not just adding. The check-in is also for exactly this.
 - **Wrong rules get followed too.** A rule that describes you badly is obeyed as faithfully as a good one. Revisit them.
 
 ## How you'll know it worked

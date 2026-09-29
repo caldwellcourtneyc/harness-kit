@@ -1,6 +1,6 @@
 # Example rules: a menu, not a starter pack
 
-**Kit note:** the seed offers this list in Phase 4. Nothing here is installed by default. Read the list together, pick the ones that name something that has already annoyed you, and put each one in your CLAUDE.md in your own words. A rule that didn't come from your own friction won't mean much to you when it fires; the first person this setup was handed to got a full rulebook at once, and it didn't survive.
+**Kit note:** the seed offers this list at the two-week check-in. Nothing here is installed by default. Read the list together, pick the ones that name something that has already annoyed you, and put each one in your CLAUDE.md in your own words. A rule that didn't come from your own friction won't mean much to you when it fires; the first person this setup was handed to got a full rulebook at once, and it didn't survive.
 
 Each entry is a real rule from Courtney's CLAUDE.md, shortened, with the reason it earned its place. The form to copy is **when this happens → do this**.
 

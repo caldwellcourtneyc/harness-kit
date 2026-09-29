@@ -143,7 +143,7 @@ button{font:inherit;cursor:pointer;color:inherit}
 .cluster{display:grid;grid-template-columns:minmax(150px,.22fr) minmax(0,1fr);gap:20px;padding:20px 22px;border-top:1px solid var(--line)}
 .cluster:first-child{border-top:0}
 .cluster h3{font-family:var(--font-d);font-weight:800;font-size:var(--fs-lead);color:var(--acc-text);line-height:1.2}
-.items{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:22px}
+.items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 22px}
 .item .when{font-weight:600;font-size:var(--fs-card);margin-bottom:4px}
 .item .tool{font-size:var(--fs-meta);color:var(--mute)}
 .item .tool code{font-family:var(--font-d);font-weight:800;color:var(--pri);font-size:var(--fs-card)}
@@ -179,7 +179,7 @@ footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
   .habits{grid-template-columns:repeat(2,minmax(0,1fr))}
   .costs{grid-template-columns:minmax(0,1fr)}
   .cluster{grid-template-columns:minmax(0,1fr);gap:10px}
-  .items{grid-auto-flow:row;grid-auto-columns:auto;gap:14px}
+  .items{grid-template-columns:minmax(0,1fr);gap:14px}
   .minibar .lbl,.stop .name{display:none}
   .bline{grid-template-columns:minmax(0,1fr);row-gap:8px}
   .bst{flex-direction:row;text-align:left;gap:14px;padding:4px}
@@ -249,9 +249,9 @@ footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
     <p>Some tools earn their place later. Setup writes each one into your instructions with the moment it's for, so Claude can suggest it then.</p>
   </div>
   <div class="shelf">
-    <div class="cluster"><h3>Deciding and planning</h3><div class="items"><div class="item"><p class="when">You're facing a decision with real tradeoffs</p><p class="tool"><code>/decide</code> a decision partner that lays out the real tradeoffs</p></div><div class="item"><p class="when">You're starting a new project</p><p class="tool"><code>a new-project checklist</code> what a project needs on day one</p></div><div class="item"><p class="when">You're about to build something with real scope</p><p class="tool"><code>/prd</code> questions the idea before any code gets written</p></div><div class="item"><p class="when">You're building the first thing real people will click through</p><p class="tool"><code>/ux-thinking</code> checks it will make sense before it's built</p></div></div></div>
-    <div class="cluster"><h3>Before it goes out</h3><div class="items"><div class="item"><p class="when">You're correcting the look of the same thing twice in a row</p><p class="tool"><code>/options</code> puts real variants side by side to react to</p></div><div class="item"><p class="when">You're about to show work to other people</p><p class="tool"><code>/squint</code> a cold read, the way your audience will meet it</p></div><div class="item"><p class="when">You're working on a codebase that really matters</p><p class="tool"><code>/codehealth</code> reviews for the mistakes AI-written code tends to make</p></div><div class="item"><p class="when">You're about to push code or deploy for the first time</p><p class="tool"><code>a push gate</code> nothing goes out without your yes, every time</p></div></div></div>
-    <div class="cluster"><h3>As your setup grows</h3><div class="items"><div class="item"><p class="when">You're running two sessions at the same time</p><p class="tool"><code>an append-only guard</code> one session can't overwrite what the other wrote</p></div><div class="item"><p class="when">Two weeks in, at your setup check-in</p><p class="tool"><code>a session-start check</code> says where you left off, and proves your guards still work</p></div></div></div>
+    <div class="cluster"><h3>Deciding and planning</h3><div class="items"><div class="item"><p class="when">You're facing a decision with real tradeoffs</p><p class="tool"><code>/decide</code> a decision partner that lays out the real tradeoffs</p></div><div class="item"><p class="when">You're about to commit to something that's expensive to undo</p><p class="tool"><code>/x-ray</code> a check on what you're both assuming and not asking</p></div><div class="item"><p class="when">You're not sure you're solving the right problem</p><p class="tool"><code>/reframe</code> names what the work assumes and offers other ways to see it</p></div><div class="item"><p class="when">You're starting a new project</p><p class="tool"><code>a new-project checklist</code> what a project needs on day one</p></div><div class="item"><p class="when">You're about to build something with real scope</p><p class="tool"><code>/prd</code> questions the idea before any code gets written</p></div><div class="item"><p class="when">You're building the first thing real people will click through</p><p class="tool"><code>/ux-thinking</code> checks it will make sense before it's built</p></div></div></div>
+    <div class="cluster"><h3>Before it goes out</h3><div class="items"><div class="item"><p class="when">You're correcting the look of the same thing twice in a row</p><p class="tool"><code>/options</code> puts real variants side by side to react to</p></div><div class="item"><p class="when">You're building your first web page</p><p class="tool"><code>layout rules</code> three rules that load only when Claude works on web files</p></div><div class="item"><p class="when">You're about to show work to other people</p><p class="tool"><code>/squint</code> a cold read, the way your audience will meet it</p></div><div class="item"><p class="when">You're working on a codebase that really matters</p><p class="tool"><code>/codehealth</code> reviews for the mistakes AI-written code tends to make</p></div><div class="item"><p class="when">You're about to push code or deploy for the first time</p><p class="tool"><code>a push gate</code> nothing goes out without your yes, every time</p></div></div></div>
+    <div class="cluster"><h3>As your setup grows</h3><div class="items"><div class="item"><p class="when">You're coming back to a project after days away</p><p class="tool"><code>/pickup</code> rebuilds where you left off and what was promised</p></div><div class="item"><p class="when">You're running two sessions at the same time</p><p class="tool"><code>an append-only guard</code> one session can't overwrite what the other wrote</p></div><div class="item"><p class="when">Two weeks in, at your setup check-in</p><p class="tool"><code>a session-start check</code> says where you left off, and proves your guards still work</p></div></div></div>
   </div>
 </section>
 
@@ -259,7 +259,7 @@ footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
   <div class="get">
     <div>
       <h2 class="d" id="geth" tabindex="-1">Get the kit</h2>
-      <p>A set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup over a few short conversations, and never overwrites anything you already have without showing you first. It writes to Claude Code's settings folder in your home directory (~/.claude), so what it builds works in every project, and you can start it from any folder.</p>
+      <p>A set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup in one sitting, finished by a check-in two weeks later, and never overwrites anything you already have without showing you first. It writes to Claude Code's settings folder in your home directory (~/.claude), so what it builds works in every project, and you can start it from any folder.</p>
       <p>This grew out of one person's way of working. Some of it will fit you and some won't. Keep what helps, skip what doesn't, and expect your harness to take its own shape.</p>
       <a class="btn" id="dl" href="https://github.com/caldwellcourtneyc/harness-kit/archive/refs/heads/main.zip">Download the kit (zip)</a>
       <p class="small" id="dlnote">This harness can also work with Codex. The kit includes an adapter for it.</p>
@@ -267,18 +267,18 @@ footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
     <ol>
       <li><span>Unzip it somewhere you'll keep it. It unzips as a folder called harness-kit-main.</span></li>
       <li><span>Open Claude Code and say: <code>Read START-HERE.md and SEED.md in &lt;the path to harness-kit-main&gt;, then let's begin.</code></span></li>
-      <li><span>Expect a conversation, not an installer. It starts by looking at what you already have and asking how you work, then builds these pieces roughly in the order above. Stop after any conversation and pick it up next time.</span></li>
+      <li><span>Expect a conversation, not an installer. It starts by looking at what you already have and asking how you work, then builds light versions of the pieces above. If you stop partway, your Claude offers to pick up where you left off.</span></li>
       <li><span>Read each file before you add it. That includes this kit; your Claude shows you each one first.</span></li>
     </ol>
   </div>
   <div class="costs">
-    <div><b>What it costs</b>A few sessions to set up, spread out however you like.</div>
-    <div><b>What it asks of you</b>Pruning. Every always-on piece is read every session, so the kit sets a two-week check-in to remove what hasn't earned its place.</div>
+    <div><b>What it costs</b>One sitting to set up, plus a check-in two weeks later that your Claude puts on your calendar.</div>
+    <div><b>What it asks of you</b>Pruning. Every always-on piece is read every session, so the check-in also removes what hasn't earned its place.</div>
     <div><b>How you'll know it worked</b>A fresh session surprises you with something from three sessions ago that you didn't re-tell it.</div>
   </div>
 </section>
 
-<footer class="wrap">From Courtney, and her Claude. Kit snapshot 2026-09-27. Facts about Claude Code were checked against its docs in September 2026; the example exchanges are illustrations, not transcripts.</footer>
+<footer class="wrap">From Courtney, and her Claude. Kit snapshot 2026-09-28. Facts about Claude Code were checked against its docs in September 2026; the example exchanges are illustrations, not transcripts.</footer>
 
 <script>
 const STEPS=[
@@ -288,7 +288,7 @@ const STEPS=[
   add:"A CLAUDE.md file in your words: who you are, how you like to work, and pointers like \"when I pick a project back up, read its handoff first.\" (A handoff is a document written at the end of a session that captures where the work stands and what comes next.)",
   builtin:"the CLAUDE.md file, read at the start of every session.",
   ask:"Build me a landing page for the bakery.",
-  before:"Here's a complete landing page! I built a hero section, the menu, testimonials and a contact form...",
+  before:"Here's a complete landing page. I built a hero section, the menu, testimonials and a contact form...",
   after:"Before I build all of it: here are three quick directions to react to, since you typically prefer to choose from real examples over reading descriptions.",
   because:"one line in your instructions: show me examples, don't describe them.",
   change:"Every session starts already knowing how you like to work."},
@@ -298,7 +298,7 @@ const STEPS=[
   add:"The facts that matter, one short note each, with the ones about you kept where every project can see them. Plus one rule: Claude shows you a memory before saving it, so you decide what it remembers.",
   builtin:"auto memory, one project at a time, saving without asking.",
   ask:"Draft the update for the client.",
-  before:"Sure! Here's a detailed, formal update covering all the key points...",
+  before:"Here's the update: a detailed, formal version covering all the key points...",
   after:"Here's a three-line version, inline. You told me she reads on her phone and skips attachments.",
   because:"a memory note, found through the index.",
   change:"You stop repeating facts about yourself and your work."},
@@ -308,7 +308,7 @@ const STEPS=[
   add:"A journal: a short dated entry at the end of each session, a way for Claude to search it, and a standing instruction to check it whenever you refer back to earlier work: past decisions, what failed before, approaches that worked.",
   builtin:"saved transcripts of past sessions, but no way to search them by what was said. This is the piece the harness adds.",
   ask:"Should we move the site to a static generator?",
-  before:"Good idea! Static sites are fast and cheap to host. Here's how to migrate...",
+  before:"That could work well. Static sites are fast and cheap to host. Here's how to migrate...",
   after:"We looked at this on Aug 12 and stayed put, because the booking form needs a server. Has that changed?",
   because:"the journal, plus an instruction to search it first.",
   change:"Past decisions come back with their reasons, before you redo the work."},
@@ -318,7 +318,7 @@ const STEPS=[
   add:"Skills. A skill is a written method for one kind of job: the steps, the checks, what good looks like, and the mistakes to avoid. Claude uses it when the task matches, or when you type its name.",
   builtin:"the skill format, and a few general skills like code review.",
   ask:"Look over my pitch deck before I send it.",
-  before:"Looks great! Maybe tighten the wording on slide 3.",
+  before:"It's in good shape. I'd tighten the wording on slide 3.",
   after:"Reading it cold, the way an investor will: by slide 2 I still can't tell who it's for. Three things would stop them, most serious first, plus the slide that's working best so you keep it.",
   because:"a review skill: read it as the audience first, rank problems by how much they cost you, and name what's working.",
   change:"Claude follows the proven process and uses the right tools, every time."},
@@ -328,7 +328,7 @@ const STEPS=[
   add:"One skill, /land, that runs the close-out: says what it didn't get to say, files each thing worth keeping where it belongs, updates the handoff, and drafts a short journal entry for your OK.",
   builtin:"saved transcripts, but nothing that pulls out what mattered.",
   ask:"OK, that's it for today.",
-  before:"Great work today! Let me know if you need anything else.",
+  before:"Sounds good. Let me know if you need anything else.",
   after:"Landing. Two decisions to file, one thing I didn't get to say, and a journal draft below. Nothing's saved until you OK it.",
   because:"the close-out routine. It's how every session feeds the next one.",
   change:"Nothing valuable disappears when the session ends."},
@@ -348,10 +348,10 @@ const STEPS=[
   hurt:"You make the same correction for the third time, because nothing turned the first two into a permanent fix.",
   add:"At each session's close-out, Claude notes friction: things you corrected, work called done without proof. Once a week, a scheduled task in Claude Code (or a standing line that runs it in your first session of the week) reads the log for what repeats, and each repeat gets a permanent fix.",
   builtin:"nothing that tracks repeated mistakes.",
-  ask:"You used the old logo again.",
-  before:"Sorry! I'll use the new one.",
-  after:"That's the third time. This week's review suggests adding the current logo's filename to your project instructions, so it stops.",
-  because:"the friction log and its weekly review.",
+  ask:"Did you fix the signup form?",
+  before:"Yes, I updated the signup form validation.",
+  after:"Not yet. I ran a test signup and it still fails on emails with a plus sign. Fixing that next.",
+  because:"a rule your weekly review proposed after Claude said \"fixed\" three times without testing.",
   change:"The harness gets better over months instead of just bigger."}
 ];
 const DL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"/></svg>';
