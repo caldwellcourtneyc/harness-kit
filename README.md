@@ -4,7 +4,7 @@
 
 Claude Code starts as a brilliant stranger. It knows a lot, but starts off knowing next to nothing about you. It can't look up what you decided last month, today's correction may not make it to tomorrow, and it waits for you to start everything. **A harness is what you put around it**, so it works like a colleague who's been with you for months.
 
-For a visual walkthrough, open `intro.html` (in this folder) in your browser after downloading.
+By [Courtney Caldwell](https://courtneyccaldwell.com). For a visual walkthrough, see [courtneyccaldwell.com/harness-kit](https://courtneyccaldwell.com/harness-kit) (also in this folder as `intro.html`).
 
 This kit is a set of plain text files your Claude reads and works through with you. It builds into your own Claude Code setup in one sitting, finished by a check-in two weeks later, and never overwrites anything you already have without showing you first.
 
@@ -62,7 +62,7 @@ A harness is half files, half habits. These four are what make the files keep pa
 - **Check what it saves.** Read the memories and rules Claude proposes, so your harness describes you, not Claude's guesses about you.
 - **Prune at the check-in.** Everything always loaded costs something every session, so remove what hasn't earned its place.
 
-The kit's guide goes deeper on each, including what it costs.
+The kit's guide goes deeper on each, including its tradeoff.
 
 ## When this happens, reach for this
 
@@ -98,4 +98,4 @@ Some tools earn their place later. Setup writes each one into your instructions 
 
 ---
 
-From Courtney, and her Claude. Kit snapshot 2026-09-28. Facts about Claude Code were checked against its docs in September 2026; the example exchanges are illustrations, not transcripts.
+From Courtney, and her Claude. Free to use and adapt under the MIT license (see `LICENSE`). Kit snapshot 2026-10-24, shared as is with no promise of support; if something breaks, [open an issue](https://github.com/caldwellcourtneyc/harness-kit/issues). Facts about Claude Code were checked against its docs in September 2026; the example exchanges are illustrations, not transcripts.

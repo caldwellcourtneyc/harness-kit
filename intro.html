@@ -34,6 +34,8 @@ button{font:inherit;cursor:pointer;color:inherit}
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end;padding-block:clamp(36px,5vw,64px) clamp(28px,4vw,44px)}
 .kick{color:var(--acc-text);margin-bottom:14px}
 .hero h1{font-size:clamp(2.4rem,5vw,4.4rem);color:var(--pri)}
+.by{margin-top:14px;font-family:var(--font-d);font-weight:800;font-size:var(--fs-card)}
+.by a{color:var(--pri)}
 .lede{font-size:var(--fs-lead)}
 .lede b{color:var(--pri)}
 .lede + .lede{margin-top:12px}
@@ -207,6 +209,7 @@ footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
   <div>
     <div class="lbl kick">Build your own Claude Code harness</div>
     <h1 class="d">Claude Code starts as a brilliant stranger.</h1>
+    <p class="by">By <a href="https://courtneyccaldwell.com">Courtney Caldwell</a></p>
   </div>
   <div>
     <p class="lede">It knows a lot, but starts off knowing next to nothing about you. It can't look up what you decided last month, today's correction may not make it to tomorrow, and it waits for you to start everything. <b>A harness is what you put around it</b>, so it works like a colleague who's been with you for months.</p>
@@ -239,7 +242,7 @@ footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
       <div class="habit"><h3>Check what it saves</h3><p>Read the memories and rules Claude proposes, so your harness describes you, not Claude's guesses about you.</p></div>
       <div class="habit"><h3>Prune at the check-in</h3><p>Everything always loaded costs something every session, so remove what hasn't earned its place.</p></div>
     </div>
-    <p class="habitfoot">The kit's guide goes deeper on each, including what it costs.</p>
+    <p class="habitfoot">The kit's guide goes deeper on each, including its tradeoff.</p>
   </div>
 </section>
 
@@ -278,7 +281,7 @@ footer{padding-block:28px 60px;font-size:var(--fs-meta);color:var(--mute)}
   </div>
 </section>
 
-<footer class="wrap">From Courtney, and her Claude. Kit snapshot 2026-09-28. Facts about Claude Code were checked against its docs in September 2026; the example exchanges are illustrations, not transcripts.</footer>
+<footer class="wrap">From Courtney, and her Claude. Free to use and adapt under the MIT license. Kit snapshot 2026-10-24, shared as is with no promise of support; if something breaks, <a href="https://github.com/caldwellcourtneyc/harness-kit/issues">open an issue on GitHub</a>. Facts about Claude Code were checked against its docs in September 2026; the example exchanges are illustrations, not transcripts.</footer>
 
 <script>
 const STEPS=[
